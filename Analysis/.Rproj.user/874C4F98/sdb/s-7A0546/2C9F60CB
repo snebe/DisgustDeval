@@ -1,0 +1,16 @@
+{
+    "contents" : "#Create vectors with participant details\n#These take the form:\n\n#IDcode <- c(\"path to data file.log\", counterbalancing version, \"IDcode\", participant number)\n\n##Example from another similar task\n# iPIT401 <- c(\"R/data/iPIT401.log\", \"A\", \"iPIT401\", 1)\n# iPIT402 <- c(\"R/data/iPIT402.log\", \"B\", \"iPIT402\", 2)\n# iPIT403 <- c(\"R/data/iPIT403.log\", \"A\", \"iPIT403\", 3)\n# iPIT404 <- c(\"R/data/iPIT404.log\", \"B\", \"iPIT404\", 4)\n\n\n#ID codes for analysis of the instrumental training data\nID001_i <- c(\"R/data/instru/ID001_instru.log\", \"A\", \"ID001\", 1)\nID002_i <- c(\"R/data/instru/ID002_instru.log\", \"A\", \"ID002\", 2)\n\n\n\n#ID vectors for analysis of the devaluation test data\n#Devaluation Version in these vectors\n#Deval version 1: O1 devalued\n#Deval version 2: O2 devalued\nID001_d <- c(\"R/data/deval/ID001_deval.log\", \"1\", \"ID001\", 1)\nID002_d <- c(\"R/data/deval/ID002_deval.log\", \"1\", \"ID002\", 2)\n\n\n#calculates CS end time (6s after CSonset)\nendTime <- function(x){\n  x + 6\n}\n\n#calculates preCS start time (6s before CSonset)\npreTime <- function(x){\n  x - 6\n}\n\n#find times of text strings\nfindTime <- function(x){\n  data$time[data$text == x]\n}\n\n#find position of an element in a vector\nfindPos <- function(x){\n  which(data$text == x)\n}\n\n#count responses\ncountResp <- function(x, y){\n  c(sum(y > x[1] & y < x[2]), sum(y > x[2] & y < x[3]))\n}\n\n\n\n#assigns an empty vector to a variable\n#y = length of the empty vector\ncreateVector <- function(x, y){\n  x <- numeric(length=length(y))\n}\n\n\n#assigns an empty matrix to a variable\n#y = number of rows of the empty matrix\n#z = number of columns of the empty matrix\ncreateDF <- function(x,y,z){\n  x <- matrix(nrow = length(y), ncol = z)\n}\n\n\naddID <- function(id, x, cols){\n  df <- data.frame(id, x)\n  colnames(df) <- cols\n  df\n}\n",
+    "created" : 1457667591180.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "514723559",
+    "id" : "2C9F60CB",
+    "lastKnownWriteTime" : 1457667664,
+    "path" : "~/DisgustDeval/Analysis/R/functions.R",
+    "project_path" : "R/functions.R",
+    "properties" : {
+    },
+    "source_on_save" : false,
+    "type" : "r_source"
+}

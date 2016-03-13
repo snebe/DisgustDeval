@@ -1,0 +1,16 @@
+{
+    "contents" : "##This script extracts and summarises the data from the devaluation test of the Disgust Devaluation task. \n##Before you run this you need:\n#The log files for each participant in the 'R/data/deval' folder\n#Participant log files all named '(whateveryouridsis)_deval.log'\n\n#-if you try to run this without the appropriate packages installed it wont work\n#-you can use install.packages() to download these\n#-this may take a bit of fiddling if your uni's firewall doesn't like you doing this\n#You will need to create individual participant ID vectors in the 'R/functions.R' script \n\nsource(\"R/functions.R\") #this loads the functions that will be needed for analysis\n\nID <- list(ID001_d, ID002_d)\n\n#create the empty vectors that will be filled by data extracted from participant data\n\nparticipant <- character(length = length(ID))  # creates a vector that will be filled with participant IDs\ndevalmeasures <- c(\"devalRs\", \"nondevalRs\")\nemptymeasures <- vector(\"list\", length(devalmeasures)) #create a list for each training measure\nnames(emptymeasures) <- devalmeasures #give each item in the list names\n\nemptymeasures <- lapply(emptymeasures, createVector, y=ID) #for each measure, create an empty vector the length of the # of participants\n\n\nfor(i in ID){\n  data <- read.delim(i[[1]], header = FALSE) #uses the path in the participant ID vector to read the log file\n  version <- i[[2]] #looks for the version in the second item of the participant vector\n  \n  #give the data column headings\n  colnames(data) <- c(\"time\", \"type\", \"text\")\n  \n  #find the time that each left and right response was made\n  #this subsets the time column for each row where a left or right keypress is made\n  #IF YOU CHANGE KEYS FOR LEFT AND RIGHT YOU WILL NEED TO CHANGE THIS \n  \n  i.r1times <- findTime(\"Keypress: t\") #left is always R1\n  i.r2times <- findTime(\"Keypress: v\") #right is always R2\n  \n  #Count the number of responses on each action\n  i.r1total <- length(i.r1times)\n  i.r2total <- length(i.r2times)\n  \n  #Counterbalancing for the deval version used\n  if(version == \"1\"){\n    i.devalRs <- i.r1total\n    i.nondevalRs <- i.r2total\n  } else if(version == \"2\"){\n    i.devalRs <- i.r2total\n    i.nondevalRs <- i.r1total\n  } else {\n    \"Invalid Version Selected\"\n  }\n  \n  #Insert individual participant values into the empty vectors created\n  participant[as.numeric(i[4])] <- i[[3]] # insert participant ID code into vector\n  for(j in devalmeasures){\n    emptymeasures[[j]][[as.numeric(i[4])]] <- get(paste0(\"i.\", j))\n  }\n}\n\ndeval.df <- as.data.frame(emptymeasures) #dataframe from list\nwide.deval.df <- data.frame(participant, emptymeasures) #group data frame with participant IDs\n\n\n#Set directory for output\ndir.output <- 'R/output/data/deval'\n\n#Export group data\nwrite.csv(wide.deval.df, file = file.path(dir.output, \"group_devalData.csv\"), row.names = FALSE)\n\n",
+    "created" : 1457667837533.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "2308566253",
+    "id" : "DA80C94C",
+    "lastKnownWriteTime" : 1457667870,
+    "path" : "~/DisgustDeval/Analysis/deval_analysis.R",
+    "project_path" : "deval_analysis.R",
+    "properties" : {
+    },
+    "source_on_save" : false,
+    "type" : "r_source"
+}
