@@ -314,7 +314,7 @@
         <Param name="Begin Routine" updates="constant" val="tilt = 0&amp;#10;pressL = 0.0&amp;#10;pressR = 0.0&amp;#10;" valType="extendedCode"/>
         <Param name="End Routine" updates="constant" val="#save data&amp;#10;trials.addData('pressL', pressL)&amp;#10;trials.addData('pressR', pressR)&amp;#10;logging.flush()" valType="extendedCode"/>
         <Param name="End Experiment" updates="constant" val="" valType="extendedCode"/>
-        <Param name="Each Frame" updates="constant" val="if tilt &gt; 0:&amp;#10; tilt  = tilt-1&amp;#10;if tilt &lt; 0:&amp;#10; tilt = tilt+1&amp;#10;&amp;#10;if event.getKeys(['t']):&amp;#10; pressL = pressL+1&amp;#10; tilt = -15&amp;#10;&amp;#10;if event.getKeys(['v']):&amp;#10; pressR=pressR+1&amp;#10; tilt = 15" valType="extendedCode"/>
+        <Param name="Each Frame" updates="constant" val="if tilt &gt; 0:&amp;#10; tilt  = tilt-1&amp;#10;if tilt &lt; 0:&amp;#10; tilt = tilt+1&amp;#10;&amp;#10;if event.getKeys(['c']):&amp;#10; pressL = pressL+1&amp;#10; tilt = -15&amp;#10;&amp;#10;if event.getKeys(['m']):&amp;#10; pressR=pressR+1&amp;#10; tilt = 15" valType="extendedCode"/>
       </CodeComponent>
       <ImageComponent name="CSimage">
         <Param name="opacity" updates="constant" val="1" valType="code"/>
