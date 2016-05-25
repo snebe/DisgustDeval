@@ -12,8 +12,10 @@ Task assessing goal-directed action using disgust outcome-devaluation.
   - NOTE: Devaluation test is designed for fMRI testing. Needs to be adapted for behavioural only assessment. 
 
   #### Combined Training and Devaluation Test 
-  - devalCombined.psyexp 
-  - Includes Instrumental training, Devaluation video and Extinction Test
+  - File: devalCombined.psyexp 
+  - Left/Right Responses: 'c'/'m'
+  - Includes Instrumental training, Devaluation video and Extinction Test.
+  - Includes Counter for Outcomes Earned During Devaluation. 
   - Devaluation adapted for behavioural-only testing. Fixation crosses removed.
 
   __Counterbalancing__
