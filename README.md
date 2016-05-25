@@ -11,6 +11,22 @@ Task assessing goal-directed action using disgust outcome-devaluation.
 - M&Ms, BBQ Shapes & Tiny Teddies cockroach movies.
   - NOTE: Devaluation test is designed for fMRI testing. Needs to be adapted for behavioural only assessment. 
 
+  #### Combined Training and Devaluation Test 
+  - devalCombined.psyexp 
+  - Includes Instrumental training, Devaluation video and Extinction Test
+  - Devaluation adapted for behavioural-only testing. Fixation crosses removed.
+
+  __Counterbalancing__
+  --------------------
+  
+  | Version | Left Outcome | Right Outcome | Devalued Outcome |
+  |:-------:|:------------:|:-------------:|:----------------:|
+  |A        | M&Ms         | BBQ Mini Crackers | M&Ms         |
+  |B        | M&Ms         | BBQ Mini Crackers | BBQ Mini Crackers |
+  |C        | BBQ Mini Crackers | M&Ms         | BBQ Mini Crackers |
+  |D        | BBQ Mini Crackers | M&Ms         | M&Ms              |
+
+
 
 ### Analysis
 - Instrumental Training Data:
@@ -24,4 +40,8 @@ Task assessing goal-directed action using disgust outcome-devaluation.
 - Post-transfer Devaluation Data:
   - Total number of devalued responses
   - Total number of nondevalued responses
+
+ __TO DO__
+
+ - adapt analysis code for output from devalCombined.psyexp
 
