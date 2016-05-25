@@ -548,7 +548,7 @@
         <Param name="name" updates="None" val="BBQ_ratingText" valType="code"/>
         <Param name="wrapWidth" updates="constant" val="" valType="code"/>
         <Param name="color" updates="constant" val="LightGray" valType="str"/>
-        <Param name="text" updates="constant" val="How much do you like BBQ shapes?" valType="str"/>
+        <Param name="text" updates="constant" val="How much do you like BBQ Mini Crackers?" valType="str"/>
         <Param name="stopVal" updates="constant" val="" valType="code"/>
         <Param name="durationEstim" updates="None" val="" valType="code"/>
         <Param name="pos" updates="constant" val="[0, 0.5]" valType="code"/>
@@ -986,7 +986,7 @@
         <Param name="name" updates="None" val="BBQ_ratingText_2" valType="code"/>
         <Param name="wrapWidth" updates="constant" val="" valType="code"/>
         <Param name="color" updates="constant" val="LightGray" valType="str"/>
-        <Param name="text" updates="constant" val="How much do you like BBQ shapes?" valType="str"/>
+        <Param name="text" updates="constant" val="How much do you like BBQ Mini Crackers?" valType="str"/>
         <Param name="stopVal" updates="constant" val="" valType="code"/>
         <Param name="durationEstim" updates="None" val="" valType="code"/>
         <Param name="pos" updates="constant" val="[0, 0.5]" valType="code"/>
@@ -1008,7 +1008,7 @@
         <Param name="name" updates="None" val="Instructions_text" valType="code"/>
         <Param name="wrapWidth" updates="constant" val="2" valType="code"/>
         <Param name="color" updates="constant" val="LightGray" valType="str"/>
-        <Param name="text" updates="constant" val="Someone has said you can get free&amp;#10;snacks from our vending machine.&amp;#10;&amp;#10;Use the button box to tilt the &amp;#10;machine to the left and right, and &amp;#10;learn how to steal different snacks!&amp;#10;&amp;#10;&amp;#10;&amp;#10;&amp;#10;           Press space to begin" valType="str"/>
+        <Param name="text" updates="constant" val="Someone has said you can get free&amp;#10;snacks from our vending machine.&amp;#10;&amp;#10;Use the 'C' and 'M' keys to tilt the &amp;#10;machine to the left and right, and &amp;#10;learn how to steal different snacks!&amp;#10;&amp;#10;&amp;#10;&amp;#10;&amp;#10;           Press space to begin" valType="str"/>
         <Param name="stopVal" updates="constant" val="" valType="code"/>
         <Param name="durationEstim" updates="None" val="" valType="code"/>
         <Param name="pos" updates="constant" val="[0, 0.1]" valType="code"/>
