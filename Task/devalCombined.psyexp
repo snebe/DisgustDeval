@@ -1004,7 +1004,7 @@
         <Param name="startType" updates="None" val="time (s)" valType="str"/>
         <Param name="allowedKeys" updates="constant" val="'c','m'" valType="code"/>
         <Param name="stopType" updates="None" val="duration (s)" valType="str"/>
-        <Param name="startVal" updates="None" val="1.5" valType="code"/>
+        <Param name="startVal" updates="None" val="1" valType="code"/>
         <Param name="store" updates="constant" val="first key" valType="str"/>
         <Param name="syncScreenRefresh" updates="constant" val="True" valType="bool"/>
       </KeyboardComponent>
