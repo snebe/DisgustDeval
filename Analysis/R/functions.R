@@ -10,18 +10,21 @@
 # iPIT404 <- c("R/data/iPIT404.log", "B", "iPIT404", 4)
 
 
-#ID codes for analysis of the instrumental training data
-ID001_i <- c("R/data/instru/ID001_instru.log", "A", "ID001", 1)
-ID002_i <- c("R/data/instru/ID002_instru.log", "A", "ID002", 2)
+ID001 <- c("R/data/combined/ID001.log", "A", "ID001", 1)
+ID002 <- c("R/data/combined/ID002.log", "B", "ID002", 2)
 
-
-
-#ID vectors for analysis of the devaluation test data
-#Devaluation Version in these vectors
-#Deval version 1: O1 devalued
-#Deval version 2: O2 devalued
-ID001_d <- c("R/data/deval/ID001_deval.log", "1", "ID001", 1)
-ID002_d <- c("R/data/deval/ID002_deval.log", "1", "ID002", 2)
+# #ID codes for analysis of the instrumental training data
+# ID001_i <- c("R/data/instru/ID001_instru.log", "A", "ID001", 1)
+# ID002_i <- c("R/data/instru/ID002_instru.log", "A", "ID002", 2)
+# 
+# 
+# 
+# #ID vectors for analysis of the devaluation test data
+# #Devaluation Version in these vectors
+# #Deval version 1: O1 devalued
+# #Deval version 2: O2 devalued
+# ID001_d <- c("R/data/deval/ID001_deval.log", "1", "ID001", 1)
+# ID002_d <- c("R/data/deval/ID002_deval.log", "1", "ID002", 2)
 
 
 #calculates CS end time (6s after CSonset)
@@ -45,8 +48,9 @@ findPos <- function(x){
 }
 
 #count responses
+#this counts between TWO values
 countResp <- function(x, y){
-  c(sum(y > x[1] & y < x[2]), sum(y > x[2] & y < x[3]))
+  c(sum(y > x[1] & y < x[2]))
 }
 
 
