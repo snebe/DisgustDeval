@@ -24,10 +24,17 @@ ID <- list(ID001, ID002)
 
 participant <- character(length = length(ID))  # creates a vector that will be filled with participant IDs
 instru_measures <- c("instru_r1", "instru_r2", "o1won", "o2won", "totalWon", "o1rating", "o2rating", "preHunger")
-emptymeasures <- vector("list", length(instru_measures)) #create a list for each training measure
-names(emptymeasures) <- instru_measures #give each item in the list names
+emptyInstrumeasures <- vector("list", length(instru_measures)) #create a list for each training measure
+names(emptyInstrumeasures) <- instru_measures #give each item in the list names
 
-emptymeasures <- lapply(emptymeasures, createVector, y=ID) #for each measure, create an empty vector the length of the # of participants
+emptyInstrumeasures <- lapply(emptyInstrumeasures, createVector, y=ID) #for each measure, create an empty vector the length of the # of participants
+
+deval_measures <- c("devalRs", "nondevalRs","pre_devalRating", "pre_nondevalRating", "post_devalRating", "post_nondevalRating","preHunger", "postHunger")
+
+emptyDevalmeasures <- vector("list", length(deval_measures))
+names(emptyDevalmeasures) <- deval_measures
+
+emptyDevalmeasures <- lapply(emptyDevalmeasures, createVector, y=ID)
 
 #Loop through the data extraction for each participant
 
@@ -86,13 +93,13 @@ for(i in ID){
          data[grep("RatingScale Hunger_rating:", data$text),][2,3]) #string for the outcome rating
   )
   
-  pre_mmRating <- as.numeric( # convert string to numeric
+  i.pre_mmRating <- as.numeric( # convert string to numeric
     gsub("[^0-9]", #any matching numbers within the string
          "",
          data[grep("RatingScale MM_rating:", data$text),][2,3]) #string for the outcome rating
   )
   
-  pre_bbqRating <- as.numeric( #convert string to numeric
+  i.pre_bbqRating <- as.numeric( #convert string to numeric
     gsub("[^0-9]", #any matching numbers within the string
          "",
          data[grep("RatingScale BBQ_rating:", data$text),][2,3]) #string for the outcome rating
@@ -103,11 +110,11 @@ for(i in ID){
   ##    - O2: Outcome earned by R2
   
   if(version == "A" | version == "B"){
-    i.o1rating <- pre_mmRating
-    i.o2rating <- pre_bbqRating
+    i.o1rating <- i.pre_mmRating
+    i.o2rating <- i.pre_bbqRating
   } else if (version == "C" | version == "D"){
-    i.o1rating <- pre_bbqRating
-    i.o2rating <- pre_mmRating
+    i.o1rating <- i.pre_bbqRating
+    i.o2rating <- i.pre_mmRating
   } else {
     "Invalid Version Selected"
   }
@@ -144,23 +151,76 @@ for(i in ID){
     "Invalid version Selected"
   }
   
+  ## Pleasantness ratings post-devaluation
+  ## Ratings between 1-7
+  ##  - 1: Most Unpleasant
+  ##  - 7: Most Pleasant
+  
+  i.postHunger <- as.numeric( # convert string to numeric
+    gsub("[^0-9]", #any matching numbers within the string
+         "",
+         data[grep("RatingScale Hunger_rating_2:", data$text),][2,3]) #string for the outcome rating
+  )
+  
+  i.post_mmRating <- as.numeric( # convert string to numeric
+    gsub("[^0-9]", #any matching numbers within the string
+         "",
+         data[grep("RatingScale MM_rating_2:", data$text),][2,3]) #string for the outcome rating
+  )
+  
+  i.post_bbqRating <- as.numeric( #convert string to numeric
+    gsub("[^0-9]", #any matching numbers within the string
+         "",
+         data[grep("RatingScale BBQ_rating_2:", data$text),][2,3]) #string for the outcome rating
+  )
+  
+  ## Counterbalance outcome ratings for Devalued/Nondevalued Outcomes
+  ## Version:
+  ##  - A: MMs Devaled
+  ##  - B: BBQ Devalued
+  ##  - C: BQQ Devalued
+  ##  - D: MMs Devalued
+  
+  if(version == "A" | version == "B"){
+    i.pre_devalRating <- i.pre_mmRating
+    i.pre_nondevalRating <- i.pre_bbqRating
+      
+    i.post_devalRating <- i.post_mmRating
+    i.post_nondevalRating <- i.post_bbqRating
+  } else if (version == "B" | version == "D"){
+    i.pre_devalRating <- i.pre_bbqRating
+    i.pre_nondevalRating <- i.pre_mmRating
+    
+    i.post_devalRating <- i.post_bbqRating
+    i.post_nondevalRating <- i.post_mmRating
+  } else{
+    "Invalid version selected"
+  }
+  
   ## Insert individual participant values into the empty vectors created
   ## For each cue type, inset the value of the participant into the row that corresponds with their participant number
   
   participant[as.numeric(i[4])] <- i[[3]] # insert participant ID code into vector
   for(j in instru_measures){
-    emptymeasures[[j]][[as.numeric(i[4])]] <- get(paste0("i.", j))
+    emptyInstrumeasures[[j]][[as.numeric(i[4])]] <- get(paste0("i.", j))
+  }
+  for(k in deval_measures){
+    emptyDevalmeasures[[k]][[as.numeric(i[[4]])]] <- get(paste0("i.", k))
   }
 }
 
 #Create a data frame of the group data from instrumental training
-instru.df <- as.data.frame(emptymeasures) # dataframe from list
-wide.instru.df <- data.frame(participant, emptymeasures) #group dataframe with participant ID
+instru.df <- as.data.frame(emptyInstrumeasures) # dataframe from list
+wide.instru.df <- data.frame(participant, emptyInstrumeasures) #group dataframe with participant ID
+
+#Create a data frame of the group data from the devaluation test
+deval.df <- as.data.frame(emptyDevalmeasures)
+wide.deval.df <- data.frame(participant, emptyDevalmeasures)
 
 # Set directory for output
 dir.output <- 'R/output/data'
 
 # Export group data
 write.csv(wide.instru.df, file = file.path(dir.output, "group_instruData.csv"), row.names = FALSE)
-
+write.csv(wide.deval.df, file = file.path(dir,output, "group_devalData.csv"), row.names = FALSE)
 
