@@ -222,5 +222,5 @@ dir.output <- 'R/output/data'
 
 # Export group data
 write.csv(wide.instru.df, file = file.path(dir.output, "group_instruData.csv"), row.names = FALSE)
-write.csv(wide.deval.df, file = file.path(dir,output, "group_devalData.csv"), row.names = FALSE)
+write.csv(wide.deval.df, file = file.path(dir.output, "group_devalData.csv"), row.names = FALSE)
 
