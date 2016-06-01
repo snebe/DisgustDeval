@@ -24,9 +24,10 @@ Task assessing goal-directed action using disgust outcome-devaluation.
   | Version | Left Outcome | Right Outcome | Devalued Outcome |
   |:-------:|:------------:|:-------------:|:----------------:|
   |A        | M&Ms         | BBQ Mini Crackers | M&Ms         |
-  |B        | M&Ms         | BBQ Mini Crackers | BBQ Mini Crackers |
-  |C        | BBQ Mini Crackers | M&Ms         | BBQ Mini Crackers |
-  |D        | BBQ Mini Crackers | M&Ms         | M&Ms              |
+  |B        | BBQ Mini Crackers    | M&Ms | M&Ms              |
+  |C        | M&Ms| BBQ Mini Crackers     | BBQ Mini Crackers |
+  |D        | BBQ Mini Crackers | M&Ms    | BBQ Mini Crackers |
+
 
 
 
