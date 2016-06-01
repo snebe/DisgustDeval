@@ -109,10 +109,10 @@ for(i in ID){
   ##    - O1: Outcome earned by R1
   ##    - O2: Outcome earned by R2
   
-  if(version == "A" | version == "B"){
+  if(version == "A" | version == "C"){
     i.o1rating <- i.pre_mmRating
     i.o2rating <- i.pre_bbqRating
-  } else if (version == "C" | version == "D"){
+  } else if (version == "B" | version == "D"){
     i.o1rating <- i.pre_bbqRating
     i.o2rating <- i.pre_mmRating
   } else {
@@ -137,14 +137,14 @@ for(i in ID){
   ## Versions:
   ##    - A: O1 Devalued
   ##    - B: O2 Devalued
-  ##    - C: O1 Devalued
-  ##    - D: O2 Devalued
+  ##    - C: O2 Devalued
+  ##    - D: O1 Devalued
   
   
-  if(version == "A" | version == "C"){
+  if(version == "A" | version == "D"){
     i.devalRs <- i.deval_r1
     i.nondevalRs <- i.deval_r2
-  } else if(version =="B" | version == "D"){
+  } else if(version =="B" | version == "C"){
     i.devalRs <- i.deval_r2
     i.nondevalRs <- i.deval_r1
   } else{
@@ -177,9 +177,9 @@ for(i in ID){
   ## Counterbalance outcome ratings for Devalued/Nondevalued Outcomes
   ## Version:
   ##  - A: MMs Devaled
-  ##  - B: BBQ Devalued
-  ##  - C: BQQ Devalued
-  ##  - D: MMs Devalued
+  ##  - B: MMs Devalued
+  ##  - C: BBQ Devalued
+  ##  - D: BBQ Devalued
   
   if(version == "A" | version == "B"){
     i.pre_devalRating <- i.pre_mmRating
@@ -187,7 +187,7 @@ for(i in ID){
       
     i.post_devalRating <- i.post_mmRating
     i.post_nondevalRating <- i.post_bbqRating
-  } else if (version == "B" | version == "D"){
+  } else if (version == "C" | version == "D"){
     i.pre_devalRating <- i.pre_bbqRating
     i.pre_nondevalRating <- i.pre_mmRating
     
