@@ -29,7 +29,7 @@ names(emptyInstrumeasures) <- instru_measures #give each item in the list names
 
 emptyInstrumeasures <- lapply(emptyInstrumeasures, createVector, y=ID) #for each measure, create an empty vector the length of the # of participants
 
-deval_measures <- c("devalRs", "nondevalRs","pre_devalRating", "pre_nondevalRating", "post_devalRating", "post_nondevalRating","preHunger", "postHunger")
+deval_measures <- c("predevalRs", "prenondevalRs", "devalRs", "nondevalRs","pre_devalRating", "pre_nondevalRating", "post_devalRating", "post_nondevalRating","preHunger", "postHunger")
 
 emptyDevalmeasures <- vector("list", length(deval_measures))
 names(emptyDevalmeasures) <- deval_measures
@@ -142,9 +142,15 @@ for(i in ID){
   
   
   if(version == "A" | version == "D"){
+    i.predevalRs <- i.instru_r1
+    i.prenondevalRs <- i.instru_r2
+    
     i.devalRs <- i.deval_r1
     i.nondevalRs <- i.deval_r2
   } else if(version =="B" | version == "C"){
+    i.predevalRs <- i.instru_r2
+    i.prenondevalRs <- i.instru_r1
+    
     i.devalRs <- i.deval_r2
     i.nondevalRs <- i.deval_r1
   } else{
@@ -225,4 +231,13 @@ dir.output <- 'R/output/data'
 # Export group data
 write.csv(wide.instru.df, file = file.path(dir.output, "group_instruData.csv"), row.names = FALSE)
 write.csv(wide.deval.df, file = file.path(dir.output, "group_devalData.csv"), row.names = FALSE)
+
+
+##########################################################
+#####################   GRAPHS    ########################
+##########################################################
+
+# Graphs the instrumental responding data. 
+wide.resp.df <- wide.deval.df[,1:5]
+# Graphs the ratings data. 
 
