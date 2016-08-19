@@ -18,7 +18,7 @@ library(stringr)
 source("R/functions.R") #this loads the functions that will be needed for analysis
 
 #Create a list of all of the participant info vectors
-ID <- list(ID001, ID002)
+ID <- list(ID001, ID002, ID003, ID004, ID005, ID006, ID007, ID008, ID009, ID010, ID011)
 
 #Create the empty vectors that will be filled with the data extracted from each participant. 
 
@@ -156,23 +156,25 @@ for(i in ID){
   ##  - 1: Most Unpleasant
   ##  - 7: Most Pleasant
   
-  i.postHunger <- as.numeric( # convert string to numeric
+  i.postHunger <- as.numeric(substr(( # convert string to numeric
     gsub("[^0-9]", #any matching numbers within the string
          "",
          data[grep("RatingScale Hunger_rating_2:", data$text),][2,3]) #string for the outcome rating
-  )
+  ),2,2)) #this extracts the last number from this (i.e. what the actual rating was)
   
-  i.post_mmRating <- as.numeric( # convert string to numeric
+  
+  
+  i.post_mmRating <- as.numeric(substr(( # convert string to numeric
     gsub("[^0-9]", #any matching numbers within the string
          "",
          data[grep("RatingScale MM_rating_2:", data$text),][2,3]) #string for the outcome rating
-  )
+  ),2,2)) #this extracts the last number from this (i.e. what the actual rating was)
   
-  i.post_bbqRating <- as.numeric( #convert string to numeric
+  i.post_bbqRating <- as.numeric(substr(( #convert string to numeric
     gsub("[^0-9]", #any matching numbers within the string
          "",
          data[grep("RatingScale BBQ_rating_2:", data$text),][2,3]) #string for the outcome rating
-  )
+  ), 2, 2)) #this extracts the last number from this (i.e. what the actual rating was)
   
   ## Counterbalance outcome ratings for Devalued/Nondevalued Outcomes
   ## Version:
