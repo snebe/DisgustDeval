@@ -25,6 +25,18 @@ ID009 <- c("R/data/combined/p009_1.log", "B", "ID009_1", 9)
 ID010 <- c("R/data/combined/p010_1.log", "A", "ID010_1", 10)
 ID011 <- c("R/data/combined/p011_1.log", "D", "ID011_1", 11)
 
+
+# Vectors for the analysis of the second time point
+ID001_2 <- c("R/data/combined/p001_2.log", "C", "ID001_2", 1)
+ID002_2 <- c("R/data/combined/p002_2.log", "C", "ID002_2", 2)
+ID003_2 <- c("R/data/combined/p003_2.log", "D", "ID003_2", 3)
+ID004_2 <- c("R/data/combined/p004_2.log", "A", "ID004_2", 4)
+ID005_2 <- c("R/data/combined/p005_2.log", "C", "ID005_2", 5)
+ID006_2 <- c("R/data/combined/p006_2.log", "C", "ID006_2", 6)
+ID007_2 <- c("R/data/combined/p007_2.log", "D", "ID007_2", 7)
+ID008_2 <- c("R/data/combined/p008_2.log", "A", "ID008_2", 8)
+ID009_2 <- c("R/data/combined/p009_2.log", "B", "ID009_2", 9)
+
 # #ID codes for analysis of the instrumental training data
 # ID001_i <- c("R/data/instru/ID001_instru.log", "A", "ID001", 1)
 # ID002_i <- c("R/data/instru/ID002_instru.log", "A", "ID002", 2)
@@ -51,7 +63,7 @@ preTime <- function(x){
 
 #find times of text strings
 findTime <- function(x){
-  data$time[data$text == x]
+  as.numeric(as.character(data$time[data$text == x]))
 }
 
 #find position of an element in a vector
